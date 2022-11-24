@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../store";
 import { useSelector } from "react-redux";
 
-export const Studentnavbar = () => {
+export const Teachernavbar = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -24,25 +24,25 @@ export const Studentnavbar = () => {
               <span className="icon-bar"></span>
             </button>
             <a className="navbar-brand" href="#">
-              Student Dashbord
+              Teacher Dashbord
             </a>
           </div>
           <div className="collapse navbar-collapse" id="myNavbar">
             <ul className="nav navbar-nav navbar-right">
               <li className="active">
-                <Link to="/studentpage">HOME</Link>
+                <Link to="/teacherpage">HOME</Link>
               </li>
               <li>
                 <Link to="/yourbooks">YOUR BOOKS</Link>
               </li>
               <li>
-                <Link to="/searchbooks">SEARCH BOOKS</Link>
+                <Link to="/notificationpage">NOTIFICATIONS</Link>
               </li>
               <li>
                 <Link to="/feedbackpage">FEEDBACK</Link>
               </li>
               <li>
-                <Link to="/studentprofile">
+                <Link to="/teacherprofile">
                   <span className="glyphicon glyphicon-user"></span> PROFILE
                 </Link>
               </li>

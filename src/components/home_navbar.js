@@ -1,4 +1,5 @@
 import React from "react";
+import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/home.css";
 
@@ -44,8 +45,13 @@ export const Homenavbar = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/teacherlogin">
+                  <span className="glyphicon glyphicon-user"></span> Teacher
+                </Link>
+              </li>
+              <li>
                 <Link to="/librarianlogin">
-                  <span className="glyphicon glyphicon-log-in"></span> Librarian
+                  <span className="glyphicon glyphicon-user"></span> Librarian
                 </Link>
               </li>
             </ul>

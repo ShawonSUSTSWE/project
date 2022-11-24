@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { authActions } from "../store";
 import axios from "axios";
 
-export const Addstudent = () => {
+export const Addteacher = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [regNo, setRegNo] = useState(null);
+  const [ID, setID] = useState(null);
   const [email, setemail] = useState(null);
   const [name, setname] = useState(null);
   const [password, setpassword] = useState(null);
@@ -25,8 +25,8 @@ export const Addstudent = () => {
 
   const sendRequest = async () => {
     const res = await axios
-      .post("http://localhost:5000/api/students", {
-        regNo: regNo,
+      .post("http://localhost:5000/api/teachers", {
+        ID: ID,
         name: name,
         email: email,
         password: password,
@@ -41,16 +41,16 @@ export const Addstudent = () => {
   return (
     <div>
       <div className="container" style={{ marginTop: "5%" }}>
-        <h3>Registration</h3>
+        <h3>Teacher Registration</h3>
         <form>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">
-              Registration No.
+              ID
             </label>
             <input
               type="text"
               class="form-control"
-              onChange={(e) => setRegNo(e.target.value)}
+              onChange={(e) => setID(e.target.value)}
             />
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">

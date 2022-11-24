@@ -8,49 +8,40 @@ import axios from "axios";
 export const Addbooks = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const [inputs, setInputs] = useState({
-    accessionNo: "",
-    author: "",
-    title: "",
-    edition: "",
-    volume: "",
-    placeOfPub: "",
-    publisher: "",
-    dateOfPub: "",
-    source: "",
-    binding: "",
-    pagination: "",
-    price: "",
-    billNoDate: "",
-    ISBN: "",
-  });
-
-  const handleChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const [accessionNo, setAccessionNo] = useState("");
+  const [author, setAuthor] = useState("");
+  const [title, setTitle] = useState("");
+  const [edition, setEdition] = useState("");
+  const [volume, setVolume] = useState("");
+  const [placeOfPub, setPlaceOfPub] = useState("");
+  const [publisher, setPublisher] = useState("");
+  const [dateOfPub, setDateOfPub] = useState("");
+  const [source, setSource] = useState("");
+  const [binding, setBinding] = useState("");
+  const [pagination, setPagination] = useState("");
+  const [price, setPrice] = useState("");
+  const [billNoDate, setBillNoDate] = useState("");
+  const [ISBN, setISBN] = useState("");
 
   const sendRequest = async () => {
     const res = await axios
       .post(
-        "http://localhost:5000/api/v1/news/",
+        "http://localhost:5000/api/books/",
         {
-          accessionNo: inputs.accessionNo,
-          author: inputs.author,
-          title: inputs.title,
-          edition: inputs.edition,
-          volume: inputs.volume,
-          placeOfPub: inputs.placeOfPub,
-          publisher: inputs.publisher,
-          dateOfPub: inputs.dateOfPub,
-          source: inputs.source,
-          binding: inputs.binding,
-          pagination: inputs.pagination,
-          price: inputs.price,
-          billNoDate: inputs.billNoDate,
-          ISBN: inputs.ISBN,
+          accessionNo: accessionNo,
+          author: author,
+          title: title,
+          edition: edition,
+          volume: volume,
+          placeOfPub: placeOfPub,
+          publisher: publisher,
+          dateOfPub: dateOfPub,
+          source: source,
+          binding: binding,
+          pagination: pagination,
+          price: price,
+          billNoDate: billNoDate,
+          ISBN: ISBN,
         },
         {
           headers: {
@@ -65,10 +56,9 @@ export const Addbooks = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     sendRequest()
       .then((data) => console.log(data))
-      .then(() => navigate("/blogs/user"));
+      .then(() => navigate("/librarianpage"));
   };
   return (
     <div>
@@ -83,19 +73,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.accessionNo}
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
-              Author
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              onChange={handleChange}
-              value={inputs.author}
+              onChange={(e) => setAccessionNo(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -105,8 +83,17 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">
+              Author
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              onChange={(e) => setAuthor(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -116,8 +103,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.edition}
+              onChange={(e) => setEdition(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -127,8 +113,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.volume}
+              onChange={(e) => setVolume(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -138,8 +123,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.placeOfPub}
+              onChange={(e) => setPlaceOfPub(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -149,8 +133,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.publisher}
+              onChange={(e) => setPublisher(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -160,8 +143,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.dateOfPub}
+              onChange={(e) => setDateOfPub(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -171,8 +153,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.source}
+              onChange={(e) => setSource(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -182,8 +163,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.binding}
+              onChange={(e) => setBinding(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -193,8 +173,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.pagination}
+              onChange={(e) => setPagination(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -204,8 +183,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.price}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -215,8 +193,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.billNoDate}
+              onChange={(e) => setBillNoDate(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -226,8 +203,7 @@ export const Addbooks = () => {
             <input
               type="text"
               class="form-control"
-              onChange={handleChange}
-              value={inputs.ISBN}
+              onChange={(e) => setISBN(e.target.value)}
             />
           </div>
           <br />

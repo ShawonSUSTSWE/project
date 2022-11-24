@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../css/login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { authActions } from "../store";
 
@@ -11,12 +11,20 @@ function Signupscreen() {
   const [regNo, setRegNo] = useState(null);
   const [password, setPassword] = useState(null);
 
+  function containsAnyLetters(str) {
+    return /[a-zA-Z]/.test(str);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendRequest()
-      .then((data) => localStorage.setItem("token", "Bearer " + data.token))
-      .then(() => dispatch(authActions.login()))
-      .then(() => navigate("/"));
+
+    if (containsAnyLetters(regNo)) {
+      alert("You should input only numbers.");
+    } else {
+      sendRequest()
+        .then((data) => localStorage.setItem("token", "Bearer " + data.token))
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/studentpage"));
+    }
   };
 
   const sendRequest = async () => {
@@ -26,6 +34,7 @@ function Signupscreen() {
         password: password,
       })
       .catch((err) => console.log(err));
+    console.log(res);
 
     const data = await res.data;
     return data;
@@ -63,6 +72,11 @@ function Signupscreen() {
           >
             Login
           </button>
+          <Link to="/signup">
+            <button type="button" className="btn btn-primary">
+              Sign Up{" "}
+            </button>
+          </Link>
         </form>
       </div>
     </div>

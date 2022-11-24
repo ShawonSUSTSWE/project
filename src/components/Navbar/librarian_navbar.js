@@ -7,6 +7,7 @@ export const Librariannavbar = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
+
   return (
     <div>
       <nav class="navbar navbar-inverse">
@@ -34,10 +35,14 @@ export const Librariannavbar = () => {
                 </a>
                 <ul class="dropdown-menu">
                   <li>
-                    <Link to="/todaybookrequest">BOOK REQUEST</Link>
+                    <Link to="/teacherbookrequest">
+                      Book Request From Teachers
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/viewfeedback">FEEDBACK</Link>
+                    <Link to="/studentbookrequest">
+                      Book Request From Students
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -57,13 +62,7 @@ export const Librariannavbar = () => {
                 </a>
                 <ul class="dropdown-menu">
                   <li>
-                    <Link to="/addstudent">ADD STUDENT</Link>
-                  </li>
-                  <li>
                     <Link to="/addbooks">ADD BOOKS</Link>
-                  </li>
-                  <li>
-                    <Link to="/fineupdate">ADD FINE</Link>
                   </li>
                 </ul>
               </li>

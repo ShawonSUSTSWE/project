@@ -4,46 +4,27 @@ import { useNavigate } from "react-router-dom";
 import { authActions } from "../store";
 import "../css/login.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-function Librarianlogin() {
+function Teacherlogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [errText, setErrText] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [ID, setID] = useState(null);
   const [password, setPassword] = useState(null);
-
-  const validateEmail = (e) => {
-    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    let emailValue = e.target.value;
-    setEmail(emailValue);
-    if (email.match(pattern)) {
-      console.log(emailValue);
-      setErrText("");
-    } else {
-      setErrText("Email format is not valid");
-      alert("Email Address Not VALID");
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
-
-    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (email.match(pattern)) {
-      sendRequest()
-        .then((data) => localStorage.setItem("token", "Bearer " + data.token))
-        .then(() => dispatch(authActions.login()))
-        .then(() => navigate("/librarianpage"));
-    } else {
-      alert("Email not valid");
-    }
+    console.log(ID, password);
+    sendRequest()
+      .then((data) => localStorage.setItem("token", "Bearer " + data.token))
+      .then(() => dispatch(authActions.login()))
+      .then(() => navigate("/teacherpage"));
   };
 
   const sendRequest = async () => {
     const res = await axios
-      .post("http://localhost:5000/api/librarian/login", {
-        email: email,
+      .post("http://localhost:5000/api/teachers/login", {
+        ID: ID,
         password: password,
       })
       .catch((err) => console.log(err));
@@ -55,16 +36,14 @@ function Librarianlogin() {
     <div>
       {/* <Homenavbar /> */}
       <div className="container">
-        <h3>Librarian LogIn</h3>
+        <h3>Teacher LogIn</h3>
         <form>
           <div class="mb-3">
-            <label class="form-label">Email address</label>
+            <label class="form-label">ID</label>
             <input
-              type="email"
               className="form-control"
-              id="exampleInputEmail1"
-              onChange={(e) => setEmail(e.target.value)}
-              aria-describedby="emailHelp"
+              id="exampleInputID1"
+              onChange={(e) => setID(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -84,10 +63,15 @@ function Librarianlogin() {
           >
             Login
           </button>
+          <Link to="/teachersignup">
+            <button type="button" className="btn btn-primary">
+              Sign Up{" "}
+            </button>
+          </Link>
         </form>
       </div>
     </div>
   );
 }
 
-export default Librarianlogin;
+export default Teacherlogin;
